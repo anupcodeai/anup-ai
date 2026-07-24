@@ -1,0 +1,11 @@
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Anup AI");
+});
+
+app.listen(3000, () => {
+  console.log("Anup AI is running on port 3000");
+});

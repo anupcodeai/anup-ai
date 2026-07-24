@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anup AI</title>
+</head>
+<body>
+
+<h1>Anup AI</h1>
+
+<input id="question" placeholder="अपना सवाल लिखें">
+<button onclick="askAI()">Send</button>
+
+<p id="answer"></p>
+
+<script>
+async function askAI() {
+  const question = document.getElementById("question").value;
+
+  const response = await fetch("/ask", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      question: question
+    })
+  });
+
+  const data = await response.json();
+
+  document.getElementById("answer").innerText = data.answer;
+}
+</script>
+
+</body>
+</html>
