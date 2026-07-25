@@ -60,6 +60,10 @@ flex:1;
 
 button{
 width:90px;
+background:#0078ff;
+color:white;
+border-radius:12px;
+padding:10px;
 }
 }
 
@@ -117,6 +121,25 @@ border-radius:10px;
 max-width:80%;
 align-self:flex-end;
 }
+.modes{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+.modes button:nth-child(1){
+background:#0078ff;
+}
+
+.modes button:nth-child(2){
+background:#28a745;
+}
+
+.modes button:nth-child(3){
+background:#9c27b0;
+}
 </style>
 
 </head>
@@ -128,7 +151,21 @@ align-self:flex-end;
 </div>
 
 <div class="chat-box">
+<div class="modes">
 
+<button>
+🧑‍🎓 Student Mode
+</button>
+
+<button>
+💼 Career Mode
+</button>
+
+<button>
+🎬 Creator Mode
+</button>
+
+</div>
 <div class="input-row">
 <input id="question" placeholder="अपना सवाल लिखें...">
 <button onclick="askAI()">Send</button>
