@@ -153,15 +153,15 @@ background:#9c27b0;
 <div class="chat-box">
 <div class="modes">
 
-<button>
+<button onclick="setMode('student')">
 🧑‍🎓 Student Mode
 </button>
 
-<button>
+<button onclick="setMode('career')">
 💼 Career Mode
 </button>
 
-<button>
+<button onclick="setMode('creator')">
 🎬 Creator Mode
 </button>
 
@@ -178,7 +178,25 @@ background:#9c27b0;
 </div>
 
 <script>
+let currentMode = "student";
 
+function setMode(mode){
+    currentMode = mode;
+
+    const input = document.getElementById("question");
+
+    if(mode === "student"){
+        input.placeholder = "📚 पढ़ाई या Exam से जुड़ा सवाल पूछें...";
+    }
+
+    if(mode === "career"){
+        input.placeholder = "💼 नौकरी या Career से जुड़ा सवाल पूछें...";
+    }
+
+    if(mode === "creator"){
+        input.placeholder = "🎬 YouTube, Instagram या Content से जुड़ा सवाल पूछें...";
+    }
+}
 async function askAI(){
 
 const question = document.getElementById("question").value;
