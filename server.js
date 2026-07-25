@@ -9,12 +9,23 @@ app.use(express.static("public"));
 app.post("/ask", (req, res) => {
 
 const question = req.body.question.toLowerCase();
-
+const mode = req.body.mode || "student";
 let answer = "माफ कीजिए, मैं अभी इस सवाल का जवाब नहीं दे पाया।";
 
 
-if(question.includes("hello") || question.includes("hi") || question.includes("namaste")){
-answer = "नमस्ते! मैं Anup AI हूँ। आपका स्वागत है। मैं आपकी मदद के लिए तैयार हूँ।";
+if(question.includes("hello") || question.includes("hi")){
+
+    if(mode === "student"){
+        answer = "📚 नमस्ते! मैं Student Mode में हूँ। पढ़ाई, Exam, Notes और Questions में आपकी मदद कर सकता हूँ।";
+    }
+
+    else if(mode === "career"){
+        answer = "💼 नमस्ते! मैं Career Mode में हूँ। नौकरी, Resume, Interview और Government Jobs में आपकी मदद कर सकता हूँ।";
+    }
+
+    else if(mode === "creator"){
+        answer = "🎬 नमस्ते! मैं Creator Mode में हूँ। YouTube, Instagram, Script, Thumbnail और Viral Content में आपकी मदद कर सकता हूँ।";
+    }
 }
 
 
