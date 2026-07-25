@@ -32,39 +32,31 @@ box-shadow:0 0 10px rgba(0,0,0,.15);
 min-height:450px;
 }
 
+.modes{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+.modes button:nth-child(1){
+    background:#0078ff;
+}
+
+.modes button:nth-child(2){
+    background:#28a745;
+}
+
+.modes button:nth-child(3){
+    background:#9c27b0;
+}
+
+.modes button:nth-child(4){
+    background:#ff9800;
+}
 .input-row{
 display:flex;
-align-items:center;
-gap:8px;
-width:100%;
-}
-
-#question{
-flex:1;
-width:auto;
-}
-
-.input-row button{
-width:90px;
-flex-shrink:0;
-}
-
-@media (max-width:600px){
-.input-row{
-flex-direction:row;
-}
-
-#question{
-flex:1;
-}
-
-button{
-width:90px;
-background:#0078ff;
-color:white;
-border-radius:12px;
-padding:10px;
-}
+gap:10px;
 }
 
 #question{
@@ -73,7 +65,6 @@ padding:12px;
 font-size:16px;
 border:1px solid #ccc;
 border-radius:8px;
-outline:none;
 }
 
 button{
@@ -83,21 +74,8 @@ color:white;
 border:none;
 border-radius:8px;
 cursor:pointer;
-font-size:16px;
 }
 
-button:hover{
-background:#e65c00;
-}
-
-#answer{
-margin-top:20px;
-padding:15px;
-background:#eeeeee;
-border-radius:10px;
-min-height:80px;
-font-size:16px;
-}
 #chat{
 margin-top:20px;
 display:flex;
@@ -105,40 +83,21 @@ flex-direction:column;
 gap:12px;
 }
 
+.user-message{
+background:#0078ff;
+color:white;
+padding:12px;
+border-radius:10px;
+align-self:flex-end;
+max-width:80%;
+}
+
 .ai-message{
 background:#eeeeee;
 padding:12px;
 border-radius:10px;
-max-width:80%;
 align-self:flex-start;
-}
-
-.user-message{
-background:#eeeeee;
-color:#000;
-padding:12px;
-border-radius:10px;
 max-width:80%;
-align-self:flex-end;
-}
-.modes{
-display:flex;
-justify-content:center;
-gap:10px;
-margin-bottom:20px;
-flex-wrap:wrap;
-}
-
-.modes button:nth-child(1){
-background:#0078ff;
-}
-
-.modes button:nth-child(2){
-background:#28a745;
-}
-
-.modes button:nth-child(3){
-background:#9c27b0;
 }
 </style>
 
@@ -151,6 +110,7 @@ background:#9c27b0;
 </div>
 
 <div class="chat-box">
+
 <div class="modes">
 
 <button onclick="setMode('student')">
@@ -164,25 +124,25 @@ background:#9c27b0;
 <button onclick="setMode('creator')">
 🎬 Creator Mode
 </button>
+
 <button onclick="setMode('rozgar')">
 🧑‍💼 Rozgar Mode
 </button>
+
 </div>
+
 <div class="input-row">
 <input id="question" placeholder="अपना सवाल लिखें...">
 <button onclick="askAI()">Send</button>
 </div>
 
-<div id="chat">
-
-</div>
-
-</div>
+<div id="chat"></div>
 
 <script>
-let currentMode = "student";
+    let currentMode = "student";
 
 function setMode(mode){
+
     currentMode = mode;
 
     const input = document.getElementById("question");
@@ -190,66 +150,52 @@ function setMode(mode){
     if(mode === "student"){
         input.placeholder = "📚 पढ़ाई या Exam से जुड़ा सवाल पूछें...";
     }
-
-    if(mode === "career"){
+    else if(mode === "career"){
         input.placeholder = "💼 नौकरी या Career से जुड़ा सवाल पूछें...";
     }
-
-    if(mode === "creator"){
+    else if(mode === "creator"){
         input.placeholder = "🎬 YouTube, Instagram या Content से जुड़ा सवाल पूछें...";
     }
+    else if(mode === "rozgar"){
+        input.placeholder = "🧑‍💼 रोजगार, सरकारी नौकरी, प्राइवेट नौकरी, Resume या Interview से जुड़ा सवाल पूछें...";
+    }
+
 }
+
 async function askAI(){
 
-const question = document.getElementById("question").value;
+    const question = document.getElementById("question").value;
 
-if(question.trim()==""){
-return;
-}
+    if(question.trim()==""){
+        return;
+    }
 
-// user message show
-const chat = document.getElementById("chat");
+    const chat = document.getElementById("chat");
 
-const userMsg = document.createElement("div");
-userMsg.className = "user-message";
-userMsg.innerText = question;
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-message";
+    userMsg.innerText = question;
+    chat.appendChild(userMsg);
 
-chat.appendChild(userMsg);
+    const response = await fetch("/ask",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            question:question,
+            mode:currentMode
+        })
+    });
 
+    const data = await response.json();
 
-// AI request
-const response = await fetch("/ask",{
+    const aiMsg = document.createElement("div");
+    aiMsg.className = "ai-message";
+    aiMsg.innerText = data.answer;
+    chat.appendChild(aiMsg);
 
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-question: question,
-mode: currentMode
-})
-
-});
-
-
-const data = await response.json();
-
-
-// AI message show
-const aiMsg = document.createElement("div");
-
-aiMsg.className = "ai-message";
-
-aiMsg.innerText = data.answer;
-
-chat.appendChild(aiMsg);
-
-
-// input clear
-document.getElementById("question").value="";
-
+    document.getElementById("question").value="";
 }
 
 </script>
