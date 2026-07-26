@@ -105,6 +105,7 @@ max-width:80%;
 <meta name="theme-color" content="#2563eb">
 </head>
 <script>
+window.addEventListener("load", () => {  
 let deferredPrompt;
 
 const installBtn = document.getElementById("installBtn");
@@ -127,6 +128,9 @@ installBtn.addEventListener("click", async () => {
   await deferredPrompt.userChoice;
   deferredPrompt = null;
   installBtn.style.display = "none";
+});
+}
+
 });
 </script>
 <body>
