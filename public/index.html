@@ -265,8 +265,9 @@ async function askAI(){
     const data = await response.json();
 
     const aiMsg = document.createElement("div");
+    aiMsg.style.whiteSpace = "pre-wrap";
     aiMsg.className = "ai-message";
-    aiMsg.innerText = data.answer;
+    typeWriter(aiMsg, data.answer);
     chat.appendChild(aiMsg);
 
     document.getElementById("question").value="";
@@ -310,6 +311,22 @@ if (installBtn) {
     deferredPrompt = null;
     installBtn.style.display = "none";
   });
+}
+function typeWriter(element, text) {
+  let i = 0;
+  element.innerText = "";
+
+  const speed = 18; // जितना कम, उतनी तेज़ टाइपिंग
+
+  function typing() {
+    if (i < text.length) {
+      element.innerText += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+
+  typing();
 }
 </script>
 <script>
