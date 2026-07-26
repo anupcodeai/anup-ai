@@ -169,7 +169,7 @@ installBtn.addEventListener("click", async () => {
     📲 Install Anupi AI
   </button>
 </div>
-</div>
+
 
 <div class="input-row">
 <input id="question" placeholder="अपना सवाल लिखें...">
@@ -237,7 +237,37 @@ async function askAI(){
 
     document.getElementById("question").value="";
 }
+let deferredPrompt;
 
+const installBtn = document.getElementById("installBtn");
+
+if (installBtn) {
+  installBtn.style.display = "none";
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "block";
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) {
+      alert("Install अभी उपलब्ध नहीं है। कृपया पेज को Refresh करें।");
+      return;
+    }
+
+    deferredPrompt.prompt();
+
+    const choiceResult = await deferredPrompt.userChoice;
+
+    if (choiceResult.outcome === "accepted") {
+      console.log("User accepted the install prompt");
+    }
+
+    deferredPrompt = null;
+    installBtn.style.display = "none";
+  });
+}
 </script>
 <script>
 if ("serviceWorker" in navigator) {
