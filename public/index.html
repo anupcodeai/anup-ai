@@ -100,7 +100,8 @@ align-self:flex-start;
 max-width:80%;
 }
 </style>
-
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#2563eb">
 </head>
 
 <body>
@@ -199,6 +200,14 @@ async function askAI(){
 }
 
 </script>
-
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then(() => console.log("Service Worker Registered"))
+      .catch(err => console.log(err));
+  });
+}
+</script>
 </body>
 </html>
