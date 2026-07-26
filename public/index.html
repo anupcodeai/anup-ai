@@ -104,7 +104,26 @@ max-width:80%;
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#2563eb">
 </head>
+<script>
+let deferredPrompt;
 
+const installBtn = document.getElementById("installBtn");
+installBtn.style.display = "none";
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = "block";
+});
+
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.style.display = "none";
+});
+</script>
 <body>
 
 <div class="header">
@@ -130,7 +149,21 @@ max-width:80%;
 <button onclick="setMode('rozgar')">
 🧑‍💼 Rozgar Mode
 </button>
-
+<div style="display:flex;justify-content:center;margin:20px 0;">
+  <button id="installBtn" style="
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+  ">
+    📲 Install Anupi AI
+  </button>
+</div>
 </div>
 
 <div class="input-row">
