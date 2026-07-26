@@ -6,10 +6,30 @@
 <title>Anup AI</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#ffffff">
-<style>
+<style>  
 body{
 margin:0;
 font-family:Arial,sans-serif;
+.ai-header {
+    text-align: center;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.ai-header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.ai-header p {
+    margin: 8px 0 0;
+    font-size: 16px;
+}
 background:#f5f5f5;
 }
 
@@ -142,7 +162,10 @@ installBtn.addEventListener("click", async () => {
 <div class="chat-box">
 
 <div class="modes">
-
+<div class="ai-header">
+  <h1>🤖 Anup AI</h1>
+  <p>पढ़ाई • करियर • रोजगार • क्रिएटर की आपकी AI मदद</p>
+</div>
 <button onclick="setMode('student')">
 🧑‍🎓 Student Mode
 </button>
