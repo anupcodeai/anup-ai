@@ -108,7 +108,12 @@ max-width:80%;
 let deferredPrompt;
 
 const installBtn = document.getElementById("installBtn");
-installBtn.style.display = "none";
+
+if (!installBtn) {
+  console.log("Install button not found");
+} else {
+  installBtn.style.display = "none";
+}
 
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
