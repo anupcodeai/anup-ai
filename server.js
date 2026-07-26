@@ -1,8 +1,11 @@
 const express = require("express");
 require("dotenv").config();
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const OpenAI = require("openai");
+
+const client = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: process.env.OPENROUTER_API_KEY
+});
 const app = express();
 
 app.use(express.json());
@@ -30,10 +33,11 @@ if(question.includes("hello") || question.includes("hi")){
     else if(mode === "creator"){
         answer = "🎬 नमस्ते! मैं Creator Mode में हूँ। YouTube, Instagram, Script, Thumbnail और Viral Content में आपकी मदद कर सकता हूँ।";
     }
-}
-else if(mode === "rozgar"){
+    else if(mode === "rozgar"){
     answer = "🧑‍💼 नमस्ते! मैं Rozgar Mode में हूँ। नौकरी, सरकारी भर्ती, Resume, Interview और Skill सीखने में आपकी मदद कर सकता हूँ।";
 }
+}
+
 
 else if(question.includes("who are you") || question.includes("tum kaun")){
 answer = "मैं Anup AI हूँ, आपका अपना AI assistant।";
@@ -51,12 +55,18 @@ answer = "मैं आपके सवालों का जवाब दे�
 else {
 
 try {
+console.log("Calling Gemini API...");
+const result = await client.chat.completions.create({
+  model: "openai/gpt-4o-mini",
+  messages: [
+    {
+      role: "user",
+      content: question
+    }
+  ]
+});
 
-const result = await model.generateContent(question);
-
-const response = result.response;
-
-answer = response.text();
+answer = result.choices[0].message.content;
 
 }
 catch(error){
