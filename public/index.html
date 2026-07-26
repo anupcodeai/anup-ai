@@ -163,24 +163,13 @@ installBtn.addEventListener("click", async () => {
 
 <div class="modes">
 <div class="ai-header">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
   <h1>🤖 Anup AI</h1>
+  <span id="menuBtn" style="font-size:28px;cursor:pointer;">☰</span>
+</div>
   <p>पढ़ाई • करियर • रोजगार • क्रिएटर की आपकी AI मदद</p>
 </div>
-<button onclick="setMode('student')">
-🧑‍🎓 Student Mode
-</button>
 
-<button onclick="setMode('career')">
-💼 Career Mode
-</button>
-
-<button onclick="setMode('creator')">
-🎬 Creator Mode
-</button>
-
-<button onclick="setMode('rozgar')">
-🧑‍💼 Rozgar Mode
-</button>
 <div style="display:flex;justify-content:center;margin:20px 0;">
   <button id="installBtn" style="
     background:#2563eb;
@@ -196,7 +185,25 @@ installBtn.addEventListener("click", async () => {
     📲 Install Anup AI
   </button>
 </div>
+<div id="sideMenu" style="
+display:none;
+background:white;
+border-radius:14px;
+padding:12px;
+margin:12px auto;
+max-width:420px;
+box-shadow:0 6px 20px rgba(0,0,0,.18);
+">
 
+<div onclick="setMode('student')" style="padding:12px;cursor:pointer;">📚 Student Mode</div>
+
+<div onclick="setMode('career')" style="padding:12px;cursor:pointer;">💼 Career Mode</div>
+
+<div onclick="setMode('creator')" style="padding:12px;cursor:pointer;">🎬 Creator Mode</div>
+
+<div onclick="setMode('rozgar')" style="padding:12px;cursor:pointer;">🧑‍💼 Rozgar Mode</div>
+
+</div>
 
 <div class="input-row">
 <input id="question" placeholder="अपना सवाल लिखें...">
@@ -264,6 +271,15 @@ async function askAI(){
 
     document.getElementById("question").value="";
 }
+document.getElementById("menuBtn").addEventListener("click", function () {
+  const menu = document.getElementById("sideMenu");
+
+  if (menu.style.display === "none" || menu.style.display === "") {
+    menu.style.display = "block";
+  } else {
+    menu.style.display = "none";
+  }
+});
 let deferredPrompt;
 
 const installBtn = document.getElementById("installBtn");
