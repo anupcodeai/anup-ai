@@ -6,6 +6,7 @@ const client = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
   apiKey: process.env.OPENROUTER_API_KEY
 });
+
 const app = express();
 
 app.use(express.json());
@@ -16,7 +17,25 @@ app.post("/ask", async (req, res) => {
 
 const question = req.body.question.toLowerCase();
 const mode = req.body.mode || "student";
+
+const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
+
+if (mode === "news") {
+  const newsResponse = await fetch(
+    `https://gnews.io/api/v4/top-headlines?country=IN&lang=en&apikey=${GNEWS_API_KEY}`
+  );
+  
+  const newsData = await newsResponse.json();
+console.log(newsData);
+  return res.json({
+    answer: newsData.articles
+      .slice(0, 5)
+      .map(item => "📰 " + item.title)
+      .join("\n\n")
+  });
+}
 const apiKey = process.env.GEMINI_API_KEY;
+
 let answer = "माफ कीजिए, मैं अभी इस सवाल का जवाब नहीं दे पाया।";
 
 
