@@ -17,21 +17,20 @@ app.post("/ask", async (req, res) => {
 
 const question = req.body.question.toLowerCase();
 const mode = req.body.mode || "student";
-if (question.includes("tumhara naam") || question.includes("aapka naam") || question.includes("what is your name") || question.includes("who are you")) {
-  return res.json({
-    answer: "मेरा नाम Anup AI है। 😊"
-  });
-}
-
 if (
+  question.includes("tumhe kisne banaya") ||
+  question.includes("tumhe kaun banaya") ||
   question.includes("kisne banaya") ||
+  question.includes("kaun banaya") ||
+  question.includes("बनाया") ||
   question.includes("tumhare malik") ||
   question.includes("owner") ||
   question.includes("creator") ||
-  question.includes("who made you")
+  question.includes("who made you") ||
+  question.includes("who created you")
 ) {
   return res.json({
-    answer: "मुझे अनूप तिवारी (Anup Tiwari) ने बनाया है। ❤️"
+    answer: "मुझे अनूप तिवारी ने बनाया है। ❤️"
   });
 }
 const GNEWS_API_KEY = process.env.GNEWS_API_KEY;

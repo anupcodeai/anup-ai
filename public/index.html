@@ -222,7 +222,7 @@ box-shadow:0 6px 20px rgba(0,0,0,.18);
 
 <script>
     let currentMode = "student";
-
+let isVoiceInput = false;
 function setMode(mode){
 
     currentMode = mode;
@@ -285,7 +285,7 @@ function startVoice(){
         askAI();
     }
 };
-
+isVoiceInput = true;
   recognition.start();
 }
 document.getElementById("scanInput").addEventListener("change", function(e){
@@ -308,6 +308,7 @@ document.getElementById("scanInput").addEventListener("change", function(e){
 async function askAI(){
 
     const question = document.getElementById("question").value;
+    isVoiceInput = false;
 let finalQuestion = question;
 
 if (currentMode === "news") {
@@ -348,7 +349,10 @@ speech.lang = "hi-IN";
 speech.rate = 1;
 speech.pitch = 1;
 window.speechSynthesis.cancel();
-window.speechSynthesis.speak(speech);
+
+if (isVoiceInput) {
+    window.speechSynthesis.speak(speech);
+}
     document.getElementById("question").value="";
 }
 document.getElementById("menuBtn").addEventListener("click", function () {
