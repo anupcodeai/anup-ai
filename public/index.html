@@ -211,17 +211,7 @@ box-shadow:0 6px 20px rgba(0,0,0,.18);
 <input id="question" placeholder="अपना सवाल लिखें...">
 <button onclick="document.getElementById('scanInput').click()">📷 Scan Question</button>
 
-<input
-  type="file"
-  id="scanInput"
-  accept="image/*"
-  capture="environment"
-  style="display:none;"
->
-<div id="cropBox" style="display:none;">
-  <img id="cropImage" style="max-width:100%;">
-  <button id="cropBtn">✂️ Crop Question</button>
-</div>
+
 <button onclick="startVoice()">🎤</button>
 <button onclick="askAI()">Send</button>
 </div>
