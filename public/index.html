@@ -151,7 +151,7 @@ installBtn.addEventListener("click", async () => {
   deferredPrompt = null;
   installBtn.style.display = "none";
 });
-}
+
 
 });
 </script>
@@ -393,5 +393,17 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 <script src="https://unpkg.com/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("Service Worker Registered"))
+    .catch((error) => console.log("Service Worker Error", error));
+}
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
 </body>
 </html>
