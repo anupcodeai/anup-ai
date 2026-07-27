@@ -209,6 +209,7 @@ box-shadow:0 6px 20px rgba(0,0,0,.18);
 
 <div class="input-row">
 <input id="question" placeholder="अपना सवाल लिखें...">
+<button onclick="startVoice()">🎤</button>
 <button onclick="askAI()">Send</button>
 </div>
 
@@ -237,7 +238,29 @@ function setMode(mode){
     }
 
 }
+function startVoice(){
 
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if(!SpeechRecognition){
+    alert("आपके Browser में Voice Input उपलब्ध नहीं है।");
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
+
+  recognition.lang = "hi-IN";
+  recognition.interimResults = false;
+
+  recognition.onresult = function(event){
+    document.getElementById("question").value =
+      event.results[0][0].transcript;
+      askAI();
+  };
+
+  recognition.start();
+}
 async function askAI(){
 
     const question = document.getElementById("question").value;
