@@ -196,7 +196,9 @@ margin:12px auto;
 max-width:420px;
 box-shadow:0 6px 20px rgba(0,0,0,.18);
 ">
-
+<div onclick="setMode('news')" style="padding:12px;cursor:pointer;">
+📰 Daily News & Current Affairs
+</div>
 <div onclick="setMode('student')" style="padding:12px;cursor:pointer;">📚 Student Mode</div>
 
 <div onclick="setMode('career')" style="padding:12px;cursor:pointer;">💼 Career Mode</div>
@@ -226,7 +228,10 @@ function setMode(mode){
     currentMode = mode;
 
     const input = document.getElementById("question");
-
+if(mode === "news"){
+    input.placeholder = "📰 आज की News या Current Affairs पूछें...";
+}
+else
     if(mode === "student"){
         input.placeholder = "📚 पढ़ाई या Exam से जुड़ा सवाल पूछें...";
     }
@@ -239,7 +244,7 @@ function setMode(mode){
     else if(mode === "rozgar"){
         input.placeholder = "🧑‍💼 रोजगार, सरकारी नौकरी, प्राइवेट नौकरी, Resume या Interview से जुड़ा सवाल पूछें...";
     }
-
+document.getElementById("chat").innerHTML = "";
 }
 const menuBtn = document.getElementById("menuBtn");
 const sideMenu = document.getElementById("sideMenu");
@@ -303,7 +308,12 @@ document.getElementById("scanInput").addEventListener("change", function(e){
 async function askAI(){
 
     const question = document.getElementById("question").value;
+let finalQuestion = question;
 
+if (currentMode === "news") {
+    finalQuestion =
+    "आज की ताज़ा न्यूज़ और Current Affairs के आधार पर जवाब दो: " + question;
+}
     if(question.trim()==""){
         return;
     }
@@ -321,8 +331,8 @@ async function askAI(){
             "Content-Type":"application/json"
         },
         body:JSON.stringify({
-            question:question,
-            mode:currentMode
+            question: finalQuestion,
+            mode: currentMode
         })
     });
 
