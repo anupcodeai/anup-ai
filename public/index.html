@@ -333,7 +333,12 @@ async function askAI(){
     aiMsg.className = "ai-message";
     typeWriter(aiMsg, data.answer);
     chat.appendChild(aiMsg);
-
+const speech = new SpeechSynthesisUtterance(data.answer || aiMsg.innerText);
+speech.lang = "hi-IN";
+speech.rate = 1;
+speech.pitch = 1;
+window.speechSynthesis.cancel();
+window.speechSynthesis.speak(speech);
     document.getElementById("question").value="";
 }
 document.getElementById("menuBtn").addEventListener("click", function () {
