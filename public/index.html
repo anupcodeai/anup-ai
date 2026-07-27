@@ -251,13 +251,22 @@ function startVoice(){
   const recognition = new SpeechRecognition();
 
   recognition.lang = "hi-IN";
-  recognition.interimResults = false;
+  recognition.interimResults = true;
 
   recognition.onresult = function(event){
-    document.getElementById("question").value =
-      event.results[0][0].transcript;
-      askAI();
-  };
+
+    let transcript = "";
+
+    for (let i = 0; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+    }
+
+    document.getElementById("question").value = transcript;
+
+    if (event.results[event.results.length - 1].isFinal) {
+        askAI();
+    }
+};
 
   recognition.start();
 }
