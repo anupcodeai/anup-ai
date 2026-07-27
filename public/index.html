@@ -209,6 +209,15 @@ box-shadow:0 6px 20px rgba(0,0,0,.18);
 
 <div class="input-row">
 <input id="question" placeholder="अपना सवाल लिखें...">
+<button onclick="document.getElementById('scanInput').click()">📷 Scan Question</button>
+
+<input
+  type="file"
+  id="scanInput"
+  accept="image/*"
+  capture="environment"
+  style="display:none;"
+>
 <button onclick="startVoice()">🎤</button>
 <button onclick="askAI()">Send</button>
 </div>
@@ -270,6 +279,22 @@ function startVoice(){
 
   recognition.start();
 }
+document.getElementById("scanInput").addEventListener("change", function(e){
+
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+    Tesseract.recognize(
+    file,
+    "eng+hin"
+).then(({ data: { text } }) => {
+
+    document.getElementById("question").value = text;
+
+});
+
+});
 async function askAI(){
 
     const question = document.getElementById("question").value;
@@ -372,5 +397,6 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
+<script src="https://unpkg.com/tesseract.js@5/dist/tesseract.min.js"></script>
 </body>
 </html>
