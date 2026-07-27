@@ -218,6 +218,10 @@ box-shadow:0 6px 20px rgba(0,0,0,.18);
   capture="environment"
   style="display:none;"
 >
+<div id="cropBox" style="display:none;">
+  <img id="cropImage" style="max-width:100%;">
+  <button id="cropBtn">✂️ Crop Question</button>
+</div>
 <button onclick="startVoice()">🎤</button>
 <button onclick="askAI()">Send</button>
 </div>
@@ -284,7 +288,14 @@ document.getElementById("scanInput").addEventListener("change", function(e){
     const file = e.target.files[0];
 
     if(!file) return;
+const reader = new FileReader();
 
+reader.onload = function(event){
+    document.getElementById("cropImage").src = event.target.result;
+    document.getElementById("cropBox").style.display = "block";
+};
+
+reader.readAsDataURL(file);
     Tesseract.recognize(
     file,
     "eng+hin"
