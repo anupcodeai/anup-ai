@@ -18,35 +18,56 @@ app.post("/ask", async (req, res) => {
 const question = req.body.question.toLowerCase();
 const mode = req.body.mode || "student";
 if (
+    // Hindi
     question.includes("तुम्हें किसने बनाया") ||
+    question.includes("तुम्हें किसने बनाया है") ||
     question.includes("तुम्हें कौन बनाया") ||
+    question.includes("तुम्हें कौन बनाया है") ||
     question.includes("किसने बनाया") ||
+    question.includes("किसने बनाया है") ||
     question.includes("तुम्हारा नाम") ||
+    question.includes("तुम्हारा नाम क्या है") ||
     question.includes("आपका नाम") ||
+    question.includes("आपका नाम क्या है") ||
+
+    // Roman Hindi
     question.includes("tumhe kisne banaya") ||
+    question.includes("tumhe kisne banaya hai") ||
+    question.includes("tumhe kisane banaya") ||
+    question.includes("tumhe kisane banaya hai") ||
     question.includes("tumhe kon banaya") ||
+    question.includes("tumhe kon banaya hai") ||
+    question.includes("tumhe kaun banaya") ||
+    question.includes("tumhe kaun banaya hai") ||
     question.includes("kisne banaya") ||
+    question.includes("kisne banaya hai") ||
+    question.includes("kisane banaya") ||
+    question.includes("kisane banaya hai") ||
+    question.includes("kaun banaya") ||
+    question.includes("kaun banaya hai") ||
     question.includes("tumhara naam") ||
+    question.includes("tumhara nam kya hai") ||
     question.includes("aapka naam") ||
+    question.includes("aapka nam kya hai") ||
+
+    // English
     question.includes("who made you") ||
+    question.includes("who made you?") ||
     question.includes("who created you") ||
-    question.includes("who build you") ||
+    question.includes("who created you?") ||
     question.includes("who built you") ||
     question.includes("who developed you") ||
-    question.includes("who is your creator") ||
     question.includes("who designed you") ||
     question.includes("who invented you") ||
-    question.includes("who owns you") ||
+    question.includes("who is your creator") ||
+    question.includes("who are you") ||
     question.includes("what is your name") ||
     question.includes("what's your name") ||
-    question.includes("your name") ||
-    question.includes("who are you") ||
     question.includes("tell me your name") ||
-    question.includes("who made u") ||
-    question.includes("who created u")
+    question.includes("your name")
 ) {
     return res.json({
-        answer: "मेरा नाम Anup AI है। मुझे Anup Kumar Tiwari ने बनाया है।"
+        answer: "🤖 मेरा नाम Anup AI है। मुझे Anup Kumar Tiwari ने बनाया है।"
     });
 }
 const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
