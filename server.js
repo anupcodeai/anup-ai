@@ -18,20 +18,15 @@ app.post("/ask", async (req, res) => {
 const question = req.body.question.toLowerCase();
 const mode = req.body.mode || "student";
 if (
-  question.includes("tumhe kisne banaya") ||
-  question.includes("tumhe kaun banaya") ||
-  question.includes("kisne banaya") ||
-  question.includes("kaun banaya") ||
-  question.includes("बनाया") ||
-  question.includes("tumhare malik") ||
-  question.includes("owner") ||
-  question.includes("creator") ||
-  question.includes("who made you") ||
-  question.includes("who created you")
+    question.includes("तुम्हें किसने बनाया") ||
+    question.includes("तुम्हें कौन बनाया") ||
+    question.includes("किसने बनाया") ||
+    question.includes("तुम्हारा नाम") ||
+    question.includes("आपका नाम")
 ) {
   return res.json({
-    answer: "मुझे अनूप तिवारी ने बनाया है। ❤️"
-  });
+    answer: "मेरा नाम Anup AI है। मुझे Anup Kumar Tiwari ने बनाया है।"
+});
 }
 const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
 
