@@ -224,7 +224,9 @@ box-shadow:0 6px 20px rgba(0,0,0,.18);
 <div onclick="setMode('creator')" style="padding:12px;cursor:pointer;">🎬 Creator Mode</div>
 
 <div onclick="setMode('rozgar')" style="padding:12px;cursor:pointer;">🧑‍💼 Rozgar Mode</div>
-
+<div onclick="showHistory()" style="padding:12px">
+  💬 Chat History
+</div>
 </div>
 
 <div class="input-row">
@@ -358,7 +360,14 @@ if (currentMode === "news") {
     });
 
     const data = await response.json();
+let history = JSON.parse(localStorage.getItem("chatHistory")) || [];
 
+history.push({
+    question: question,
+    answer: data.answer
+});
+
+localStorage.setItem("chatHistory", JSON.stringify(history));
     const aiMsg = document.createElement("div");
     aiMsg.style.whiteSpace = "pre-wrap";
     aiMsg.className = "ai-message";
@@ -452,6 +461,26 @@ if ("serviceWorker" in navigator) {
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+<script>
+function showHistory() {
+
+    const oldChats = JSON.parse(localStorage.getItem("chatHistory")) || [];
+
+    let historyText = "";
+
+    if (oldChats.length === 0) {
+        historyText = "अभी कोई Chat History नहीं है";
+    } else {
+        oldChats.forEach(chat => {
+            historyText +=
+            "👤 आप: " + chat.question + "\n" +
+            "🤖 Anup AI: " + chat.answer + "\n\n";
+        });
+    }
+
+    alert(historyText);
 }
 </script>
 </body>
