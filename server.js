@@ -22,11 +22,32 @@ if (
     question.includes("तुम्हें कौन बनाया") ||
     question.includes("किसने बनाया") ||
     question.includes("तुम्हारा नाम") ||
-    question.includes("आपका नाम")
+    question.includes("आपका नाम") ||
+    question.includes("tumhe kisne banaya") ||
+    question.includes("tumhe kon banaya") ||
+    question.includes("kisne banaya") ||
+    question.includes("tumhara naam") ||
+    question.includes("aapka naam") ||
+    question.includes("who made you") ||
+    question.includes("who created you") ||
+    question.includes("who build you") ||
+    question.includes("who built you") ||
+    question.includes("who developed you") ||
+    question.includes("who is your creator") ||
+    question.includes("who designed you") ||
+    question.includes("who invented you") ||
+    question.includes("who owns you") ||
+    question.includes("what is your name") ||
+    question.includes("what's your name") ||
+    question.includes("your name") ||
+    question.includes("who are you") ||
+    question.includes("tell me your name") ||
+    question.includes("who made u") ||
+    question.includes("who created u")
 ) {
-  return res.json({
-    answer: "मेरा नाम Anup AI है। मुझे Anup Kumar Tiwari ने बनाया है।"
-});
+    return res.json({
+        answer: "मेरा नाम Anup AI है। मुझे Anup Kumar Tiwari ने बनाया है।"
+    });
 }
 const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
 
