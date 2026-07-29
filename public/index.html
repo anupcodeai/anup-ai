@@ -227,6 +227,38 @@ box-shadow:0 6px 20px rgba(0,0,0,.18);
 <div onclick="showHistory()" style="padding:12px; cursor:pointer;">
   💬 Chat History
 </div>
+<div id="historyPage" style="
+display:none;
+background:white;
+padding:20px;
+margin:20px auto;
+max-width:700px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(0,0,0,.15);
+">
+
+<h2>💬 Chat History</h2>
+
+<div id="historyContent" style="
+max-height:500px;
+overflow-y:auto;
+padding:10px;
+">
+
+</div>
+
+<button onclick="closeHistory()" style="
+margin-top:15px;
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+">
+⬅️ वापस
+</button>
+
+</div>
 </div>
 
 <div class="input-row">
@@ -469,21 +501,44 @@ if ("serviceWorker" in navigator) {
 <script>
 function showHistory() {
 
-    const oldChats = JSON.parse(localStorage.getItem("chatHistory")) || [];
+let oldChats = JSON.parse(localStorage.getItem("chatHistory")) || [];
 
-    let historyText = "";
+let box = document.getElementById("historyContent");
 
-    if (oldChats.length === 0) {
-        historyText = "अभी कोई Chat History नहीं है";
-    } else {
-        oldChats.forEach(chat => {
-            historyText +=
-            "👤 आप: " + chat.question + "\n" +
-            "🤖 Anup AI: " + chat.answer + "\n\n";
-        });
-    }
+box.innerHTML = "";
 
-    alert(historyText);
+if (oldChats.length === 0) {
+    box.innerHTML = "<p>कोई Chat History नहीं मिली।</p>";
+} else {
+
+oldChats.forEach(chat => {
+
+box.innerHTML += `
+<div style="
+background:#f1f5f9;
+padding:15px;
+margin:10px 0;
+border-radius:12px;
+border:1px solid #ddd;
+">
+
+<b>👤 आप:</b><br>
+${chat.question}
+
+<br><br>
+
+<b>🤖 Anup AI:</b><br>
+${chat.answer}
+
+</div>
+`;
+
+});
+
+}
+
+document.getElementById("historyPage").style.display = "block";
+
 }
 </script>
 </body>
