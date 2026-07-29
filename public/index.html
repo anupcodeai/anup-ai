@@ -226,13 +226,25 @@ box-shadow:0 6px 20px rgba(0,0,0,.18);
 <div onclick="setMode('news')" style="padding:12px;cursor:pointer;">
 📰 Daily News & Current Affairs
 </div>
-<div onclick="setMode('student')" style="padding:12px;cursor:pointer;">📚 Student Mode</div>
+<div onclick="farmerBuddy()" style="padding:12px;cursor:pointer;">
+🌾 Farmer Buddy
+</div>
 
-<div onclick="setMode('career')" style="padding:12px;cursor:pointer;">💼 Career Mode</div>
+<div onclick="governmentHelp()" style="padding:12px;cursor:pointer;">
+🏛️ Government Help
+</div>
 
-<div onclick="setMode('creator')" style="padding:12px;cursor:pointer;">🎬 Creator Mode</div>
+<div onclick="studyJobs()" style="padding:12px;cursor:pointer;">
+📚 Study & Jobs
+</div>
 
-<div onclick="setMode('rozgar')" style="padding:12px;cursor:pointer;">🧑‍💼 Rozgar Mode</div>
+<div onclick="earnMoney()" style="padding:12px;cursor:pointer;">
+💰 Earn Money
+</div>
+
+<div onclick="aiTools()" style="padding:12px;cursor:pointer;">
+🤖 AI Tools
+</div>
 <div onclick="showHistory()" style="padding:12px; cursor:pointer;">
   💬 Chat History
 </div>
@@ -267,9 +279,9 @@ border-radius:8px;
 ⬅️ वापस
 </button>
 
-</div>
-</div>
 
+</div>
+</div>
 <div class="input-row">
 <input id="question" placeholder="अपना सवाल लिखें...">
 
@@ -557,6 +569,9 @@ function closeHistory() {
     if (box) {
         box.style.display = "flex";
     }
+}
+function farmerBuddy() {
+    alert("🌾 Farmer Buddy - Coming Soon");
 }
 </script>
 </body>
