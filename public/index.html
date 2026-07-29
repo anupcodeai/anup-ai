@@ -549,6 +549,15 @@ ${chat.answer}
 document.getElementById("historyPage").style.display = "block";
 
 }
+function closeHistory() {
+    document.getElementById("historyPage").style.display = "none";
+    document.getElementById("chat").style.display = "block";
+
+    const box = document.querySelector(".chat-box");
+    if (box) {
+        box.style.display = "flex";
+    }
+}
 </script>
 </body>
 </html>
