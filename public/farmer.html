@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmer Buddy</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f5f5;
+}
+
+.header{
+    background:#2e7d32;
+    color:white;
+    padding:18px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.box{
+    max-width:700px;
+    margin:20px auto;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,.15);
+    padding:20px;
+}
+
+.item{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.item:hover{
+    background:#f0fdf4;
+}
+
+.back{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+<div style="padding:15px;">
+    <button onclick="window.location.href='index.html'" style="
+        background:none;
+        border:none;
+        color:#2563eb;
+        font-size:18px;
+        cursor:pointer;
+        padding:0;
+    ">
+        ⬅️ Back
+    </button>
+</div>
+<div class="header">
+🌾 Farmer Buddy
+</div>
+
+<div class="box">
+
+<button class="item" onclick="weatherPage()">
+🌦️ Today's Weather
+</button>
+
+<button class="item" onclick="cropAdvice()">
+🌱 Crop Advice
+</button>
+
+<button class="item" onclick="fertilityAnalysis()">
+🧪 Fertility Analysis
+</button>
+
+<div class="item">🦠 Disease Detection</div>
+
+<div class="item">💧 Irrigation Advice</div>
+
+
+
+</div>
+<script>
+function weatherPage() {
+
+document.querySelector(".box").innerHTML = `
+<div style="display:flex;align-items:center;margin-bottom:15px;">
+
+<button onclick="window.location.reload()" style="
+background:none;
+border:none;
+color:#2563eb;
+font-size:18px;
+cursor:pointer;
+padding:0;
+margin-right:15px;
+">
+⬅️ Back
+</button>
+
+<h2 style="margin:0;">🌦️ Today's Weather</h2>
+
+</div>
+
+<p>📍 Enter your Village / City</p>
+
+<input id="location" type="text"
+placeholder="Enter Village / City"
+style="
+width:100%;
+padding:12px;
+font-size:16px;
+margin:15px 0;
+border:1px solid #ccc;
+border-radius:8px;
+">
+
+<button onclick="alert('Weather API will be connected next.')"
+style="
+width:100%;
+padding:14px;
+background:#2e7d32;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+">
+🔍 Check Weather
+</button>
+
+<br><br>
+
+
+`;
+
+}
+</script>
+<script>
+function cropAdvice(){
+
+document.querySelector(".box").innerHTML = `
+
+<div style="display:flex;align-items:center;margin-bottom:15px;">
+
+<button onclick="window.location.reload()" style="
+background:none;
+border:none;
+color:#2563eb;
+font-size:18px;
+cursor:pointer;
+padding:0;
+margin-right:15px;
+">
+⬅️ Back
+</button>
+
+<h2 style="margin:0;">🌱 Crop Advice</h2>
+
+</div>
+
+
+<p>🌾 Enter Crop Name</p>
+
+<input id="cropName" type="text"
+placeholder="Example: Wheat, Rice, Tomato"
+style="
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:8px;
+">
+
+<p>📝 Enter Problem (Optional)</p>
+
+<textarea id="cropProblem"
+placeholder="Example: Leaves are turning yellow"
+style="
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:8px;
+height:100px;
+"></textarea>
+
+
+<button onclick="getCropAdvice()"
+style="
+width:100%;
+margin-top:20px;
+padding:14px;
+background:#2e7d32;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+">
+🌱 Get Advice
+</button>
+<div id="cropResult" style="
+margin-top:20px;
+background:#f1f5f9;
+padding:18px;
+border-radius:12px;
+font-size:16px;
+line-height:1.6;
+white-space:pre-wrap;
+border:1px solid #ddd;
+">
+🌱 AI Crop Advice यहाँ दिखेगी
+</div>
+
+`;
+
+}
+function fertilityAnalysis(){
+
+document.querySelector(".box").innerHTML = `
+
+<div style="display:flex;align-items:center;margin-bottom:15px;">
+
+<button onclick="window.location.reload()" style="
+background:none;
+border:none;
+color:#2563eb;
+font-size:18px;
+cursor:pointer;
+padding:0;
+margin-right:15px;
+">
+⬅️ Back
+</button>
+
+<h2 style="margin:0;">🧪 Fertility Analysis</h2>
+
+</div>
+
+<p>🌱 Enter Crop Name</p>
+
+<input id="fertilityCrop" type="text"
+placeholder="Example: Wheat"
+style="
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:8px;
+">
+
+<p>🌍 Enter Soil Type</p>
+
+<input id="soilType" type="text"
+placeholder="Example: Loamy"
+style="
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:8px;
+">
+
+<p>📝 Soil Problem (Optional)</p>
+
+<textarea id="soilProblem"
+placeholder="Example: Plant growth is slow"
+style="
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:8px;
+height:100px;
+"></textarea>
+
+<button onclick="analyzeFertility()"
+style="
+width:100%;
+margin-top:20px;
+padding:14px;
+background:#2e7d32;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+">
+🧪 Analyze Fertility
+</button>
+
+<div id="fertilityResult" style="
+margin-top:20px;
+background:#f1f5f9;
+padding:18px;
+border-radius:12px;
+white-space:pre-wrap;
+border:1px solid #ddd;
+">
+🌱 Fertility Result यहाँ दिखेगा
+</div>
+
+`;
+
+}
+</script>
+<script>
+async function getCropAdvice(){
+
+const crop = document.getElementById("cropName").value;
+const problem = document.getElementById("cropProblem").value;
+
+if(crop.trim()==""){
+    alert("Please enter crop name");
+    return;
+}
+
+const question =
+`Give farming advice for ${crop} crop.
+Farmer problem: ${problem}`;
+
+const response = await fetch("/ask",{
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+        question: question,
+        mode: "farmer"
+    })
+});
+
+const data = await response.json();
+
+document.getElementById("cropResult").innerText = data.answer;
+
+}
+function openFertility(){
+
+document.getElementById("fertilityPage").style.display="block";
+
+}
+async function analyzeFertility(){
+
+const crop = document.getElementById("fertilityCrop").value;
+const soil = document.getElementById("soilType").value;
+const problem = document.getElementById("soilProblem").value;
+
+if(crop.trim()==""){
+    alert("Please enter crop name");
+    return;
+}
+
+const question =
+`Give farming advice for ${crop} crop.
+Farmer problem: ${problem}`;
+
+const response = await fetch("/ask",{
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+        question:question,
+        mode:"farmer"
+    })
+});
+
+const data = await response.json();
+
+document.getElementById("fertilityResult").innerText = data.answer;
+
+}
+</script>
+</body>
+</html>
