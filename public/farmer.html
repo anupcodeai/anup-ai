@@ -87,7 +87,9 @@ body{
 🧪 Fertility Analysis
 </button>
 
-<div class="item">🦠 Disease Detection</div>
+<button class="item" onclick="openDisease()">
+🦠 Disease Detection
+</button>
 
 <div class="item">💧 Irrigation Advice</div>
 
@@ -226,7 +228,7 @@ border:1px solid #ddd;
 ">
 🌱 AI Crop Advice यहाँ दिखेगी
 </div>
-
+<hr>
 `;
 
 }
@@ -355,6 +357,49 @@ function openFertility(){
 document.getElementById("fertilityPage").style.display="block";
 
 }
+function openDisease(){
+
+document.querySelector(".box").innerHTML = `
+
+<div style="display:flex;align-items:center;margin-bottom:15px;">
+
+<button onclick="window.location.reload()" style="
+background:none;
+border:none;
+color:#2563eb;
+font-size:18px;
+cursor:pointer;
+padding:0;
+margin-right:15px;
+">
+⬅️ Back
+</button>
+
+<h2 style="margin:0;">🦠 Disease Detection</h2>
+
+</div>
+
+<p>🌾 Enter Crop Name</p>
+
+<input id="diseaseCrop" type="text"
+placeholder="Example: Wheat">
+
+<p>📝 Enter Symptoms</p>
+
+<textarea id="diseaseProblem"
+placeholder="Example: Yellow leaves, black spots"></textarea>
+
+<button onclick="analyzeDisease()">
+🦠 Detect Disease
+</button>
+
+<div id="diseaseResult">
+📝 Disease Result यहाँ दिखेगा
+</div>
+
+`;
+
+}
 async function analyzeFertility(){
 
 const crop = document.getElementById("fertilityCrop").value;
@@ -384,6 +429,44 @@ const response = await fetch("/ask",{
 const data = await response.json();
 
 document.getElementById("fertilityResult").innerText = data.answer;
+
+}
+async function analyzeDisease(){
+
+const crop = document.getElementById("diseaseCrop").value;
+const problem = document.getElementById("diseaseProblem").value;
+
+if(crop.trim()==""){
+    alert("Please enter crop name");
+    return;
+}
+
+const question =
+`Give disease detection and treatment advice for ${crop} crop.
+
+Symptoms:
+${problem}
+
+Answer in Hindi with:
+1. Possible disease
+2. Cause
+3. Treatment
+4. Prevention`;
+
+const response = await fetch("/ask",{
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+        question: question,
+        mode:"farmer"
+    })
+});
+
+const data = await response.json();
+
+document.getElementById("diseaseResult").innerText = data.answer;
 
 }
 </script>
