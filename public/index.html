@@ -445,6 +445,9 @@ let installBtn;
 
 window.addEventListener("DOMContentLoaded", () => {
     installBtn = document.getElementById("installBtn");
+    if (window.matchMedia("(display-mode: standalone)").matches) {
+    installBtn.style.display = "none";
+}
 });
 
 window.addEventListener("beforeinstallprompt", (e) => {
