@@ -440,33 +440,13 @@ let deferredPrompt;
 
 const installBtn = document.getElementById("installBtn");
 
-if (installBtn) {
-  installBtn.style.display = "none";
-
-  window.addEventListener("beforeinstallprompt", (e) => {
+window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
     installBtn.style.display = "block";
-  });
+    console.log("Install event received");
+});
 
-  installBtn.addEventListener("click", async () => {
-    if (!deferredPrompt) {
-      alert("Install अभी उपलब्ध नहीं है। कृपया पेज को Refresh करें।");
-      return;
-    }
-
-    deferredPrompt.prompt();
-
-    const choiceResult = await deferredPrompt.userChoice;
-
-    if (choiceResult.outcome === "accepted") {
-      console.log("User accepted the install prompt");
-    }
-
-    deferredPrompt = null;
-    installBtn.style.display = "none";
-  });
-}
 function typeWriter(element, text) {
   let i = 0;
   element.innerText = "";
@@ -483,19 +463,20 @@ function typeWriter(element, text) {
 
   typing();
 }
-async function installApp() {
+function installApp() {
+
     if (!deferredPrompt) {
-        alert("Install option अभी उपलब्ध नहीं है।");
+        alert("Install अभी उपलब्ध नहीं है");
         return;
     }
 
     deferredPrompt.prompt();
 
-    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt.userChoice.then(() => {
+        deferredPrompt = null;
+        installBtn.style.display = "none";
+    });
 
-    deferredPrompt = null;
-
-    document.getElementById("installBtn").style.display = "none";
 }
 </script>
 <script>
