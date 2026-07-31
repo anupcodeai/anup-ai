@@ -442,16 +442,8 @@ if(crop.trim()==""){
 }
 
 const question =
-`Give disease detection and treatment advice for ${crop} crop.
-
-Symptoms:
-${problem}
-
-Answer in Hindi with:
-1. Possible disease
-2. Cause
-3. Treatment
-4. Prevention`;
+`Detect disease for ${crop} crop.
+Farmer problem: ${problem}`;
 
 const response = await fetch("/ask",{
     method:"POST",
