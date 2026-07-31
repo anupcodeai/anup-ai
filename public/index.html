@@ -485,13 +485,7 @@ function typeWriter(element, text) {
 }
 </script>
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js")
-      .then(() => console.log("Service Worker Registered"))
-      .catch(err => console.log(err));
-  });
-}
+
 </script>
 <script src="https://unpkg.com/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
