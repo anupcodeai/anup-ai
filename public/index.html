@@ -430,15 +430,7 @@ if (isVoiceInput) {
 isVoiceInput = false;
     document.getElementById("question").value="";
 }
-document.getElementById("menuBtn").addEventListener("click", function () {
-  const menu = document.getElementById("sideMenu");
 
-  if (menu.style.display === "none" || menu.style.display === "") {
-    menu.style.display = "block";
-  } else {
-    menu.style.display = "none";
-  }
-});
 let deferredPrompt;
 
 let installBtn;
