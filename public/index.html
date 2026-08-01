@@ -381,6 +381,66 @@ document.getElementById("scanInput").addEventListener("change", function(e){
 
 });
 }
+window.addEventListener("load", () => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (
+        params.get("mode") === "army" &&
+        params.get("topic") === "vacancy"
+    ) {
+        document.getElementById("question").value =
+            "Army latest vacancy, age limit, qualification, last date aur official notification batao.";
+
+        currentMode = "career";
+
+        askAI();
+
+        history.replaceState({}, "", "index.html");
+    }
+    if (
+    params.get("mode") === "army" &&
+    params.get("topic") === "syllabus"
+) {
+    document.getElementById("question").value =
+        "Army syllabus detail me batao.";
+
+    currentMode = "career";
+
+    askAI();
+
+    history.replaceState({}, "", "index.html");
+}
+
+if (
+    params.get("mode") === "army" &&
+    params.get("topic") === "physical"
+) {
+    document.getElementById("question").value =
+        "Army physical test, height, chest, running aur medical standards batao.";
+
+    currentMode = "career";
+
+    askAI();
+
+    history.replaceState({}, "", "index.html");
+}
+});
+window.addEventListener("load", () => {
+
+    const autoQuestion = localStorage.getItem("autoQuestion");
+
+    if (autoQuestion) {
+
+        document.getElementById("question").value = autoQuestion;
+
+        currentMode = "career";
+
+        askAI();
+
+        localStorage.removeItem("autoQuestion");
+    }
+
+});
 async function askAI(){
 
     const question = document.getElementById("question").value;
@@ -559,6 +619,9 @@ function closeHistory() {
 }
 function farmerBuddy() {
     window.location.href = "farmer.html";
+}
+function governmentHelp() {
+    window.location.href = "government.html";
 }
 </script>
 </body>

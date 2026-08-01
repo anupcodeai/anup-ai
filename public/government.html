@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Help</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+}
+
+.header{
+    background:#1f2937;
+    color:white;
+    padding:18px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:25px auto;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.25);
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.item{
+    background:rgba(255,255,255,.9);
+    margin:15px 0;
+    padding:16px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.item:hover{
+    transform:translateY(-2px);
+}
+
+.back{
+    margin-top:25px;
+    background:#2563eb;
+    color:white;
+    padding:14px;
+    text-align:center;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+<div onclick="window.location.href='index.html'" style="
+position:absolute;
+top:15px;
+left:15px;
+background:rgba(255,255,255,0.2);
+color:white;
+padding:8px 14px;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+font-weight:bold;
+backdrop-filter:blur(10px);
+">
+⬅️ Back
+</div>
+<div class="header">
+🏛️ Government Help
+</div>
+
+<div class="container">
+
+<div class="item" onclick="toggleArmy()">
+🪖 Army Forces ▼
+</div>
+
+<div id="armyMenu" style="display:none; margin-left:15px;">
+
+<div class="item">📋 Vacancy</div>
+
+<div class="item">📚 Syllabus</div>
+
+<div class="item">🏃 Physical</div>
+
+<div class="item">🤖 Ask Army AI</div>
+
+</div>
+
+<div class="item">
+🚂 Railway Jobs
+</div>
+
+<div class="item">
+📚 SSC • UPSC • State Exams
+</div>
+
+<div class="item">
+📢 Latest Government Vacancy
+</div>
+
+
+
+</div>
+<script>
+function toggleArmy(){
+    const old = document.getElementById("armySection");
+    if(old){
+        old.remove();
+        return;
+    }
+
+    const box = document.createElement("div");
+    box.id = "armySection";
+    box.style.margin = "10px 0 20px 20px";
+
+    box.innerHTML = `
+    <div class="item" onclick="armyVacancy()">
+📋 Army Vacancy
+</div>
+</div>
+    <div class="item" onclick="armySyllabus()">
+📚 Army Syllabus
+</div>
+        <div class="item" onclick="armyPhysical()">
+🏃 Physical Test
+</div>
+        <div class="item" onclick="askArmyAI()">
+🤖 Ask Army AI
+</div>
+    `;
+
+    document.querySelector(".item").after(box);
+}
+</script>
+<script>
+function armyVacancy(){
+    window.location.href =
+    "index.html?mode=army&topic=vacancy";
+}
+</script>
+<script>
+function armySyllabus(){
+    window.location.href =
+    "index.html?mode=army&topic=syllabus";
+}
+</script>
+<script>
+function armyPhysical(){
+    window.location.href =
+    "index.html?mode=army&topic=physical";
+}
+</script>
+<script>
+function askArmyAI() {
+    localStorage.setItem(
+        "autoQuestion",
+        "मैं Army से संबंधित सवाल पूछना चाहता हूँ।"
+    );
+
+    window.location.href = "index.html?mode=army";
+}
+</script>
+</body>
+</html>
