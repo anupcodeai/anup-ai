@@ -166,7 +166,29 @@ button.item{
     -webkit-tap-highlight-color: transparent;
     outline: none;
 }
+.menu-btn{
+    background:#ffffff;
+    color:#222;
+    padding:14px 16px;
+    margin:8px 12px;
+    border-radius:12px;
+    border:1px solid #ddd;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .3s ease;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
 
+.menu-btn:hover{
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+.menu-btn:active{
+    transform:scale(.98);
+}
 </style>
 
 <meta name="theme-color" content="#2563eb">
@@ -219,30 +241,32 @@ margin:12px auto;
 max-width:420px;
 box-shadow:0 6px 20px rgba(0,0,0,.18);
 ">
-<div onclick="setMode('news')" style="padding:12px;cursor:pointer;">
-📰 Daily News & Current Affairs
-</div>
-<div onclick="farmerBuddy()" style="padding:12px;cursor:pointer;">
-🌾 Farmer Buddy
+<div onclick="setMode('news')" class="menu-btn">
+    📰 Daily News & Current Affairs
 </div>
 
-<div onclick="governmentHelp()" style="padding:12px;cursor:pointer;">
-🏛️ Government Help
+<div onclick="farmerBuddy()" class="menu-btn">
+    🌾 Farmer Buddy
 </div>
 
-<div onclick="studyJobs()" style="padding:12px;cursor:pointer;">
-📚 Study & Jobs
+<div onclick="governmentHelp()" class="menu-btn">
+    🏛️ Government Help
 </div>
 
-<div onclick="earnMoney()" style="padding:12px;cursor:pointer;">
-💰 Earn Money
+<div onclick="studyJobs()" class="menu-btn">
+    📚 Study & Jobs
 </div>
 
-<div onclick="aiTools()" style="padding:12px;cursor:pointer;">
-🤖 AI Tools
+<div onclick="earnMoney()" class="menu-btn">
+    💰 Earn Money
 </div>
-<div onclick="showHistory()" style="padding:12px; cursor:pointer;">
-  💬 Chat History
+
+<div onclick="aiTools()" class="menu-btn">
+    🤖 AI Tools
+</div>
+
+<div onclick="showHistory()" class="menu-btn">
+    💬 Chat History
 </div>
 <div id="historyPage" style="
 display:none;
