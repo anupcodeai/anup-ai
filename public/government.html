@@ -104,8 +104,8 @@ backdrop-filter:blur(10px);
 🚂 Railway Jobs ▼
 </div>
 
-<div class="item">
-📚 SSC • UPSC • State Exams
+<div class="item" onclick="toggleExams()">
+📚 SSC • UPSC • State Exams ▼
 </div>
 
 <div class="item">
@@ -211,6 +211,39 @@ document.querySelector('[onclick="toggleRailway()"]').after(box);
 }
 </script>
 <script>
+function toggleExams(){
+    const old = document.getElementById("examSection");
+    if(old){
+        old.remove();
+        return;
+    }
+
+    const box = document.createElement("div");
+    box.id = "examSection";
+    box.style.margin = "10px 0 20px 20px";
+
+    box.innerHTML = `
+        <div class="item" onclick="sscExam()">
+📚 SSC Exams
+</div>
+
+        <div class="item" onclick="upscExam()">
+🏛️ UPSC
+</div>
+
+        <div class="item" onclick="upStateExam()">
+📖 UP State Exams
+</div>
+
+        <div class="item" onclick="examNotification()">
+📢 Latest Exam Notifications
+</div>
+    `;
+
+    document.querySelector('[onclick="toggleExams()"]').after(box);
+}
+</script>
+<script>
 function railwayNTPC() {
     localStorage.setItem(
         "autoQuestion",
@@ -254,6 +287,43 @@ function railwayLatest() {
     );
 
     window.location.href = "index.html?mode=railway";
+}
+</script>
+<script>
+function sscExam() {
+    localStorage.setItem(
+        "autoQuestion",
+        "SSC Exams की पूरी जानकारी बताओ, जैसे SSC CGL, CHSL, MTS, GD, Selection Process, Syllabus, Eligibility और तैयारी कैसे करें।"
+    );
+
+    window.location.href = "index.html?mode=ssc";
+}
+
+function upscExam() {
+    localStorage.setItem(
+        "autoQuestion",
+        "UPSC Civil Services Exam की पूरी जानकारी बताओ, जैसे Eligibility, Age Limit, Prelims, Mains, Interview, Syllabus और Preparation Strategy।"
+    );
+
+    window.location.href = "index.html?mode=upsc";
+}
+
+function upStateExam() {
+    localStorage.setItem(
+        "autoQuestion",
+        "UP State Exams जैसे UPPCS, UP Police, Lekhpal, VDO और अन्य राज्य परीक्षाओं की पूरी जानकारी बताओ।"
+    );
+
+    window.location.href = "index.html?mode=upstate";
+}
+
+function examNotification() {
+    localStorage.setItem(
+        "autoQuestion",
+        "Latest SSC, UPSC और State Government Exams की नई Notifications बताओ।"
+    );
+
+    window.location.href = "index.html?mode=exams";
 }
 </script>
 </body>
