@@ -100,8 +100,8 @@ backdrop-filter:blur(10px);
 
 </div>
 
-<div class="item">
-🚂 Railway Jobs
+<div class="item" onclick="toggleRailway()">
+🚂 Railway Jobs ▼
 </div>
 
 <div class="item">
@@ -130,7 +130,6 @@ function toggleArmy(){
     box.innerHTML = `
     <div class="item" onclick="armyVacancy()">
 📋 Army Vacancy
-</div>
 </div>
     <div class="item" onclick="armySyllabus()">
 📚 Army Syllabus
@@ -172,6 +171,89 @@ function askArmyAI() {
     );
 
     window.location.href = "index.html?mode=army";
+}
+</script>
+<script>
+function toggleRailway(){
+    const old = document.getElementById("railwaySection");
+    if(old){
+        old.remove();
+        return;
+    }
+
+    const box = document.createElement("div");
+    box.id = "railwaySection";
+    box.style.margin = "10px 0 20px 20px";
+
+    box.innerHTML = `
+        <div class="item" onclick="railwayNTPC()">
+🚆 RRB NTPC
+</div>
+
+        <div class="item" onclick="railwayGroupD()">
+🚆 RRB Group D
+</div>
+
+        <div class="item" onclick="railwayALP()">
+🚆 RRB ALP / Technician
+</div>
+
+        <div class="item" onclick="railwayRPF()">
+👮 RPF Constable & SI
+</div>
+
+        <div class="item" onclick="railwayLatest()">
+📢 Latest Railway Notifications
+</div>
+    `;
+
+document.querySelector('[onclick="toggleRailway()"]').after(box);
+}
+</script>
+<script>
+function railwayNTPC() {
+    localStorage.setItem(
+        "autoQuestion",
+        "RRB NTPC की पूरी जानकारी बताओ, जैसे Eligibility, Age Limit, Syllabus, Exam Pattern, Selection Process और तैयारी कैसे करें।"
+    );
+
+    window.location.href = "index.html?mode=railway";
+}
+
+function railwayGroupD() {
+    localStorage.setItem(
+        "autoQuestion",
+        "RRB Group D की पूरी जानकारी बताओ, जैसे Eligibility, Physical, Syllabus, Exam Pattern और Selection Process।"
+    );
+
+    window.location.href = "index.html?mode=railway";
+}
+
+function railwayALP() {
+    localStorage.setItem(
+        "autoQuestion",
+        "RRB ALP / Technician की पूरी जानकारी बताओ, जैसे Eligibility, CBT, Syllabus, Salary और Selection Process।"
+    );
+
+    window.location.href = "index.html?mode=railway";
+}
+
+function railwayRPF() {
+    localStorage.setItem(
+        "autoQuestion",
+        "RPF Constable और SI की पूरी जानकारी बताओ, जैसे Eligibility, PET/PMT, Syllabus, Exam Pattern और Selection Process।"
+    );
+
+    window.location.href = "index.html?mode=railway";
+}
+
+function railwayLatest() {
+    localStorage.setItem(
+        "autoQuestion",
+        "Railway की Latest Vacancies और Notifications बताओ।"
+    );
+
+    window.location.href = "index.html?mode=railway";
 }
 </script>
 </body>
