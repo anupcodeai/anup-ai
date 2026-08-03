@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study & Jobs | Anup AI</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    min-height:100vh;
+}
+
+.back{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:rgba(255,255,255,.2);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    backdrop-filter:blur(10px);
+}
+
+.header{
+    text-align:center;
+    color:#fff;
+    font-size:30px;
+    font-weight:bold;
+    padding:30px 15px;
+}
+
+.container{
+    width:92%;
+    max-width:700px;
+    margin:0 auto 30px;
+}
+
+.card{
+    background:rgba(255,255,255,.95);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:18px;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.title{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.badge{
+    float:right;
+    background:#2563eb;
+    color:#fff;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.desc{
+    margin-top:10px;
+    color:#555;
+    line-height:1.5;
+}
+</style>
+
+</head>
+<body>
+
+<div class="back" onclick="window.location.href='index.html'">
+⬅️ Back
+</div>
+
+<div class="header">
+📚 Study & Jobs
+</div>
+
+<div class="container">
+
+<div class="card" onclick="careerPlanner()">
+<span class="badge">AI</span>
+<div class="title">🎯 Career Planner</div>
+<div class="desc">
+Get a personalized career roadmap based on your qualification and goals.
+</div>
+</div>
+
+<div class="card" onclick="studyPlanner()">
+<span class="badge">SMART</span>
+<div class="title">📅 Study Planner</div>
+<div class="desc">
+Generate your daily study schedule with AI.
+</div>
+</div>
+
+<div class="card" onclick="resumeBuilder()">
+<span class="badge">PRO</span>
+<div class="title">📄 Resume Builder</div>
+<div class="desc">
+Create an ATS-friendly professional resume.
+</div>
+</div>
+
+<div class="card" onclick="interviewPractice()">
+<span class="badge">NEW</span>
+<div class="title">🎤 Interview Practice</div>
+<div class="desc">
+Practice interviews with AI and improve your confidence.
+</div>
+</div>
+
+</div>
+
+<script>
+function careerPlanner(){
+    window.location.href="careerplanner.html";
+}
+
+function studyPlanner(){}
+
+function resumeBuilder(){}
+
+function interviewPractice(){}
+</script>
+
+</body>
+</html>

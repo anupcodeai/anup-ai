@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Planner | Anup AI</title>
+</head>
+
+<body>
+
+<h1>🎯 AI Career Planner</h1>
+
+<input type="text" placeholder="👤 Full Name"><br><br>
+
+<input type="number" placeholder="🎂 Age"><br><br>
+
+<input type="text" placeholder="🎓 Qualification"><br><br>
+
+<input type="text" placeholder="🎯 Dream Career"><br><br>
+
+<button onclick="generateCareerPlan()">
+✨ Generate Career Plan
+</button>
+<script>
+function generateCareerPlan(){
+
+const name = document.querySelector('input[placeholder="👤 Full Name"]').value;
+const age = document.querySelector('input[placeholder="🎂 Age"]').value;
+const qualification = document.querySelector('input[placeholder="🎓 Qualification"]').value;
+const goal = document.querySelector('input[placeholder="🎯 Dream Career"]').value;
+
+localStorage.setItem(
+"autoQuestion",
+`मेरा नाम ${name} है।
+मेरी उम्र ${age} वर्ष है।
+मेरी योग्यता ${qualification} है।
+मेरा लक्ष्य ${goal} है।
+
+मेरे लिए एक Personal Career Roadmap बनाओ।
+बताओ मुझे आगे क्या पढ़ना चाहिए, कौन-सी नौकरी मेरे लिए सही रहेगी, कौन-कौन से एग्जाम देने चाहिए, और तैयारी कैसे करनी चाहिए।`
+);
+
+window.location.href="index.html";
+}
+</script>
+</body>
+</html>
