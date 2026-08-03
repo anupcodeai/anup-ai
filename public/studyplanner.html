@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Planner | Anup AI</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:500px;
+background:#fff;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+color:#2563eb;
+}
+
+input{
+width:100%;
+padding:14px;
+margin:12px 0;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:16px;
+outline:none;
+}
+
+input:focus{
+border-color:#2563eb;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:20px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:#fff;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📅 AI Study Planner</h2>
+
+<input type="text" id="exam" placeholder="Exam Name">
+
+<select id="level">
+    <option>Beginner</option>
+    <option>Intermediate</option>
+    <option>Advanced</option>
+</select>
+
+<input type="number" id="hours" placeholder="Daily Study Hours">
+
+<button onclick="generateStudyPlan()">
+✨ Generate Study Plan
+</button>
+
+</div>
+
+<script>
+
+function generateStudyPlan(){
+
+const exam=document.getElementById("exam").value;
+const level = document.getElementById("level").value;
+const hours=document.getElementById("hours").value;
+
+localStorage.setItem(
+"autoQuestion",
+`मेरा Exam ${exam} है।
+मेरा Level ${level} है।
+मैं रोज ${hours} घंटे पढ़ सकता हूँ।
+
+मेरे लिए आज से परीक्षा तक का एक Complete Study Plan बनाओ।
+बताओ कि रोज क्या पढ़ूँ, किस विषय को कितना समय दूँ, Revision कब करूँ और Mock Test कब दूँ।`
+);
+
+window.location.href="index.html";
+
+}
+
+</script>
+
+</body>
+</html>
