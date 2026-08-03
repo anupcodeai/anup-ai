@@ -108,8 +108,8 @@ backdrop-filter:blur(10px);
 📚 SSC • UPSC • State Exams ▼
 </div>
 
-<div class="item">
-📢 Latest Government Vacancy
+<div class="item" onclick="toggleVacancy()">
+📢 Latest Government Vacancy ▼
 </div>
 
 
@@ -244,6 +244,55 @@ function toggleExams(){
 }
 </script>
 <script>
+function toggleVacancy(){
+    const old = document.getElementById("vacancySection");
+    if(old){
+        old.remove();
+        return;
+    }
+
+    const box = document.createElement("div");
+    box.id = "vacancySection";
+    box.style.margin = "10px 0 20px 20px";
+
+    box.innerHTML = `
+        <div class="item" onclick="allVacancy()">
+📢 All Latest Government Vacancies
+</div>
+
+        <div class="item" onclick="defenceVacancy()">
+🪖 Defence Jobs
+</div>
+
+        <div class="item" onclick="railwayVacancy()">
+🚆 Railway Vacancies
+</div>
+
+        <div class="item" onclick="policeVacancy()">
+👮 Police Vacancies
+</div>
+
+        <div class="item" onclick="sscUpscVacancy()">
+📚 SSC • UPSC • State Vacancies
+</div>
+
+        <div class="item" onclick="bankVacancy()">
+🏦 Banking Jobs
+</div>
+
+        <div class="item" onclick="upcomingNotification()">
+📅 Upcoming Notifications
+</div>
+
+        <div class="item" onclick="admitResult()">
+🔔 Admit Card / Result Updates
+</div>
+    `;
+
+    document.querySelector('[onclick="toggleVacancy()"]').after(box);
+}
+</script>
+<script>
 function railwayNTPC() {
     localStorage.setItem(
         "autoQuestion",
@@ -324,6 +373,47 @@ function examNotification() {
     );
 
     window.location.href = "index.html?mode=exams";
+}
+</script>
+<script>
+function allVacancy(){
+    localStorage.setItem("autoQuestion","भारत की सभी Latest Government Vacancies बताओ।");
+    window.location.href="index.html?mode=vacancy";
+}
+
+function defenceVacancy(){
+    localStorage.setItem("autoQuestion","Army, Navy, Air Force, BSF, CRPF, CISF और अन्य Defence Jobs की Latest Vacancies बताओ।");
+    window.location.href="index.html?mode=vacancy";
+}
+
+function railwayVacancy(){
+    localStorage.setItem("autoQuestion","Railway की Latest Vacancies और Notifications बताओ।");
+    window.location.href="index.html?mode=vacancy";
+}
+
+function policeVacancy(){
+    localStorage.setItem("autoQuestion","India की सभी Latest Police Vacancies बताओ।");
+    window.location.href="index.html?mode=vacancy";
+}
+
+function sscUpscVacancy(){
+    localStorage.setItem("autoQuestion","SSC, UPSC और State Government की Latest Vacancies बताओ।");
+    window.location.href="index.html?mode=vacancy";
+}
+
+function bankVacancy(){
+    localStorage.setItem("autoQuestion","Latest Banking Jobs और बैंक भर्ती की जानकारी बताओ।");
+    window.location.href="index.html?mode=vacancy";
+}
+
+function upcomingNotification(){
+    localStorage.setItem("autoQuestion","आने वाली सभी Government Job Notifications बताओ।");
+    window.location.href="index.html?mode=vacancy";
+}
+
+function admitResult(){
+    localStorage.setItem("autoQuestion","Latest Government Admit Card और Result Updates बताओ।");
+    window.location.href="index.html?mode=vacancy";
 }
 </script>
 </body>
