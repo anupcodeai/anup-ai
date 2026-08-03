@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Resume Builder | Anup AI</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:500px;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h2{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+textarea{
+height:100px;
+resize:none;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:15px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📄 AI Resume Builder</h2>
+
+<input id="name" placeholder="Your Name">
+
+<input id="education" placeholder="Education">
+
+<input id="skills" placeholder="Your Skills">
+
+<textarea id="experience" placeholder="Experience (If any)"></textarea>
+
+<button onclick="generateResume()">
+✨ Generate Resume
+</button>
+
+</div>
+
+
+<script>
+
+function generateResume(){
+
+let name=document.getElementById("name").value;
+let education=document.getElementById("education").value;
+let skills=document.getElementById("skills").value;
+let experience=document.getElementById("experience").value;
+
+
+localStorage.setItem(
+"autoQuestion",
+`मेरा नाम ${name} है।
+मेरी Education ${education} है।
+मेरी Skills ${skills} हैं।
+मेरा Experience ${experience} है।
+
+मेरे लिए एक Professional Resume बनाओ।`
+);
+
+
+window.location.href="index.html";
+
+}
+
+</script>
+
+</body>
+</html>
