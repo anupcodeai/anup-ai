@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Interview Practice</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:700px;
+background:white;
+border-radius:20px;
+padding:25px;
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+h2{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+label{
+font-weight:bold;
+display:block;
+margin-top:15px;
+margin-bottom:6px;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:16px;
+outline:none;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:18px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+#chatBox{
+display:none;
+margin-top:25px;
+border:1px solid #ddd;
+border-radius:12px;
+padding:15px;
+background:#f8f8f8;
+}
+
+.aiQuestion{
+background:#e8f0fe;
+padding:12px;
+border-radius:10px;
+margin-bottom:15px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🎤 AI Interview Practice</h2>
+
+<label>💼 Job Name</label>
+<input type="text" id="job" placeholder="Example: Software Engineer">
+
+<label>⭐ Experience Level</label>
+<select id="level">
+<option>Fresher</option>
+<option>Experienced</option>
+</select>
+
+<label>🌐 Interview Language</label>
+<select id="language">
+<option>English</option>
+<option>Hindi</option>
+</select>
+
+<button onclick="startInterview()">
+🚀 Start AI Interview
+</button>
+
+<div id="chatBox">
+
+<div class="aiQuestion" id="question">
+AI Question will appear here...
+</div>
+
+<label>Your Answer</label>
+
+<textarea
+id="answer"
+placeholder="Type your answer here...">
+</textarea>
+
+<button onclick="nextQuestion()">
+➡️ Next Question
+</button>
+
+</div>
+
+</div>
+<script>
+
+let job="";
+let level="";
+let language="";
+let questionNo=1;
+
+function startInterview(){
+
+job=document.getElementById("job").value;
+level=document.getElementById("level").value;
+language=document.getElementById("language").value;
+
+if(job==""){
+alert("Please enter Job Name");
+return;
+}
+
+document.getElementById("chatBox").style.display="block";
+
+if(language=="English"){
+
+document.getElementById("question").innerHTML=
+"<b>Question 1:</b><br>Tell me about yourself.";
+
+}else{
+
+document.getElementById("question").innerHTML=
+"<b>प्रश्न 1:</b><br>अपने बारे में बताइए।";
+
+}
+
+}
+
+function nextQuestion(){
+
+const answer=document.getElementById("answer").value;
+
+if(answer==""){
+
+alert("Please enter your answer.");
+
+return;
+
+}
+
+document.getElementById("answer").value="";
+
+questionNo++;
+
+if(language=="English"){
+
+switch(questionNo){
+
+case 2:
+document.getElementById("question").innerHTML="<b>Question 2:</b><br>Why do you want this job?";
+break;
+
+case 3:
+document.getElementById("question").innerHTML="<b>Question 3:</b><br>What are your strengths?";
+break;
+
+case 4:
+document.getElementById("question").innerHTML="<b>Question 4:</b><br>What is your biggest weakness?";
+break;
+
+case 5:
+document.getElementById("question").innerHTML="<b>Question 5:</b><br>Where do you see yourself in 5 years?";
+break;
+
+default:
+document.getElementById("question").innerHTML=
+"<h3>✅ Interview Completed</h3><br>Thank you for completing the interview. AI Evaluation will be added in the next update.";
+}
+
+}else{
+
+switch(questionNo){
+
+case 2:
+document.getElementById("question").innerHTML="<b>प्रश्न 2:</b><br>आप यह नौकरी क्यों करना चाहते हैं?";
+break;
+
+case 3:
+document.getElementById("question").innerHTML="<b>प्रश्न 3:</b><br>आपकी सबसे बड़ी ताकत क्या है?";
+break;
+
+case 4:
+document.getElementById("question").innerHTML="<b>प्रश्न 4:</b><br>आपकी सबसे बड़ी कमजोरी क्या है?";
+break;
+
+case 5:
+document.getElementById("question").innerHTML="<b>प्रश्न 5:</b><br>आप अगले 5 वर्षों में खुद को कहाँ देखते हैं?";
+
+break;
+
+default:
+
+document.getElementById("question").innerHTML=
+"<h3>✅ इंटरव्यू पूरा हुआ</h3><br>अगले अपडेट में AI आपका पूरा इंटरव्यू एनालिसिस और स्कोर बताएगा।";
+
+}
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
