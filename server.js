@@ -1,5 +1,10 @@
-const express = require("express");
 require("dotenv").config();
+
+const express = require("express");
+const interviewRoutes = require("./routes/interview");
+
+console.log(process.env.OPENROUTER_API_KEY);
+
 const OpenAI = require("openai");
 
 const client = new OpenAI({
@@ -12,7 +17,7 @@ const app = express();
 app.use(express.json());
 
 app.use(express.static("public"));
-
+app.use("/api/interview", interviewRoutes);
 app.post("/ask", async (req, res) => {
 
 const question = req.body.question.toLowerCase();

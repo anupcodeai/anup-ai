@@ -148,103 +148,70 @@ let level="";
 let language="";
 let questionNo=1;
 
-function startInterview(){
+async function startInterview() {
 
-job=document.getElementById("job").value;
-level=document.getElementById("level").value;
-language=document.getElementById("language").value;
+    job = document.getElementById("job").value;
+    level = document.getElementById("level").value;
+    language = document.getElementById("language").value;
 
-if(job==""){
-alert("Please enter Job Name");
-return;
+    if (job == "") {
+        alert("Please enter Job Name");
+        return;
+    }
+
+    document.getElementById("chatBox").style.display = "block";
+
+    const res = await fetch("/api/interview", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            job: job,
+            level: level,
+            language: language,
+            answer: ""
+        })
+    });
+
+    const data = await res.json();
+
+    questionNo = 1;
+
+    document.getElementById("question").innerHTML =
+        "<b>Question 1:</b><br>" + data.question;
 }
 
-document.getElementById("chatBox").style.display="block";
+async function nextQuestion(){
 
-if(language=="English"){
-
-document.getElementById("question").innerHTML=
-"<b>Question 1:</b><br>Tell me about yourself.";
-
-}else{
-
-document.getElementById("question").innerHTML=
-"<b>प्रश्न 1:</b><br>अपने बारे में बताइए।";
-
-}
-
-}
-
-function nextQuestion(){
-
-const answer=document.getElementById("answer").value;
+const answer = document.getElementById("answer").value;
 
 if(answer==""){
-
 alert("Please enter your answer.");
-
 return;
-
 }
 
 document.getElementById("answer").value="";
 
+const res = await fetch("/api/interview",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+job:job,
+level:level,
+language:language,
+answer:answer
+})
+});
+
+const data = await res.json();
+
 questionNo++;
 
-if(language=="English"){
-
-switch(questionNo){
-
-case 2:
-document.getElementById("question").innerHTML="<b>Question 2:</b><br>Why do you want this job?";
-break;
-
-case 3:
-document.getElementById("question").innerHTML="<b>Question 3:</b><br>What are your strengths?";
-break;
-
-case 4:
-document.getElementById("question").innerHTML="<b>Question 4:</b><br>What is your biggest weakness?";
-break;
-
-case 5:
-document.getElementById("question").innerHTML="<b>Question 5:</b><br>Where do you see yourself in 5 years?";
-break;
-
-default:
-document.getElementById("question").innerHTML=
-"<h3>✅ Interview Completed</h3><br>Thank you for completing the interview. AI Evaluation will be added in the next update.";
-}
-
-}else{
-
-switch(questionNo){
-
-case 2:
-document.getElementById("question").innerHTML="<b>प्रश्न 2:</b><br>आप यह नौकरी क्यों करना चाहते हैं?";
-break;
-
-case 3:
-document.getElementById("question").innerHTML="<b>प्रश्न 3:</b><br>आपकी सबसे बड़ी ताकत क्या है?";
-break;
-
-case 4:
-document.getElementById("question").innerHTML="<b>प्रश्न 4:</b><br>आपकी सबसे बड़ी कमजोरी क्या है?";
-break;
-
-case 5:
-document.getElementById("question").innerHTML="<b>प्रश्न 5:</b><br>आप अगले 5 वर्षों में खुद को कहाँ देखते हैं?";
-
-break;
-
-default:
-
-document.getElementById("question").innerHTML=
-"<h3>✅ इंटरव्यू पूरा हुआ</h3><br>अगले अपडेट में AI आपका पूरा इंटरव्यू एनालिसिस और स्कोर बताएगा।";
-
-}
-
-}
+document.getElementById("question").innerHTML =
+"<b>Question "+questionNo+":</b><br>"+data.question;
 
 }
 
