@@ -198,18 +198,23 @@ method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body:JSON.stringify({
-job:job,
-level:level,
-language:language,
-answer:answer
+body: JSON.stringify({
+job: job,
+level: level,
+language: language,
+questionNo: questionNo,
+answer: answer
 })
 });
 
 const data = await res.json();
 
 questionNo++;
-
+if (questionNo > 5) {
+    document.getElementById("question").innerHTML =
+    "<h3>🏆 Interview Completed</h3><br>" + data.question;
+    return;
+}
 document.getElementById("question").innerHTML =
 "<b>Question "+questionNo+":</b><br>"+data.question;
 
