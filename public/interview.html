@@ -134,7 +134,7 @@ id="answer"
 placeholder="Type your answer here...">
 </textarea>
 
-<button onclick="nextQuestion()">
+<button id="nextBtn" onclick="nextQuestion()">
 ➡️ Next Question
 </button>
 
@@ -147,7 +147,7 @@ let job="";
 let level="";
 let language="";
 let questionNo=1;
-
+let interviewAnswers = [];
 async function startInterview() {
 
     job = document.getElementById("job").value;
@@ -167,11 +167,13 @@ async function startInterview() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            job: job,
-            level: level,
-            language: language,
-            answer: ""
-        })
+    job: job,
+    level: level,
+    language: language,
+    questionNo: 1,
+    answer: "",
+    interviewAnswers: []
+})
     });
 
     const data = await res.json();
@@ -185,7 +187,7 @@ async function startInterview() {
 async function nextQuestion(){
 
 const answer = document.getElementById("answer").value;
-
+interviewAnswers.push(answer);
 if(answer==""){
 alert("Please enter your answer.");
 return;
@@ -203,18 +205,24 @@ job: job,
 level: level,
 language: language,
 questionNo: questionNo,
-answer: answer
+answer: answer,
+interviewAnswers: interviewAnswers
 })
 });
 
 const data = await res.json();
-
-questionNo++;
-if (questionNo > 5) {
+if (questionNo >= 5) {
     document.getElementById("question").innerHTML =
     "<h3>🏆 Interview Completed</h3><br>" + data.question;
+
+    document.getElementById("answer").style.display = "none";
+    document.getElementById("nextBtn").style.display = "none";
+
     return;
 }
+
+
+questionNo++;
 document.getElementById("question").innerHTML =
 "<b>Question "+questionNo+":</b><br>"+data.question;
 
