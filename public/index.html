@@ -210,6 +210,19 @@ button.item{
 .userLoginBtn:hover{
     transform:scale(1.05);
 }
+.topSignupBtn{
+    position:absolute;
+    top:5px;
+    left:5px;
+    color:white;
+    background:#2563eb;
+    padding:7px 12px;
+    border-radius:7px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:14px;
+    z-index:9999;
+}
 </style>
 
 <meta name="theme-color" content="#2563eb">
@@ -220,6 +233,7 @@ button.item{
 <body>
 
 <div class="header">
+ <div id="topUserName" class="topSignupBtn">Sign Up</div>   
 🤖 Anup AI
 </div>
 
@@ -228,9 +242,7 @@ button.item{
 <div class="modes">
 <div class="ai-header">
   <div style="display:flex;justify-content:space-between;align-items:center;">
-    <div class="userLoginBtn" id="userLoginBtn" onclick="handleUserButton()">
-    👤
-</div>
+    
   <h1>Smart AI</h1>
   <span id="menuBtn" style="font-size:28px;cursor:pointer;">☰</span>
 </div>
@@ -693,6 +705,39 @@ function handleUserButton(){
         window.location.href = "/user-login.html";
     }
 }
+function updateSignupButton(){
+
+    const signup = document.querySelector(".topSignupBtn");
+
+    if(!signup) return;
+
+    const user = localStorage.getItem("anupAIUser");
+
+    if(user){
+        signup.style.display = "none";
+    }else{
+        signup.style.display = "block";
+    }
+}
+
+updateSignupButton();
+function updateTopUserName(){
+
+    const userBox = document.getElementById("topUserName");
+    if(!userBox) return;
+
+    const user = localStorage.getItem("anupAIUser");
+
+    if(user){
+        const userData = JSON.parse(user);
+
+        userBox.textContent = userData.name;
+    }else{
+        userBox.textContent = "Sign Up";
+    }
+}
+
+updateTopUserName();
 </script>
 </body>
 </html>

@@ -152,7 +152,8 @@ async function login(){
         });
 
         const data = await res.json();
-
+        localStorage.setItem("anupAIUser", JSON.stringify(data));
+console.log("LOGIN RESPONSE:", data);
         message.innerText = data.message;
 
         if(res.ok){
