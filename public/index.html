@@ -189,6 +189,27 @@ button.item{
 .menu-btn:active{
     transform:scale(.98);
 }
+.userLoginBtn{
+    position:absolute;
+    left:15px;
+    top:15px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:22px;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+    z-index:9999;
+}
+
+.userLoginBtn:hover{
+    transform:scale(1.05);
+}
 </style>
 
 <meta name="theme-color" content="#2563eb">
@@ -207,6 +228,9 @@ button.item{
 <div class="modes">
 <div class="ai-header">
   <div style="display:flex;justify-content:space-between;align-items:center;">
+    <div class="userLoginBtn" id="userLoginBtn" onclick="handleUserButton()">
+    👤
+</div>
   <h1>Smart AI</h1>
   <span id="menuBtn" style="font-size:28px;cursor:pointer;">☰</span>
 </div>
@@ -654,6 +678,20 @@ function governmentHelp() {
 <script>
 function studyJobs(){
     window.location.href = "study.html";
+}
+</script>
+<script>
+function handleUserButton(){
+
+    const user = localStorage.getItem("anupAIUser");
+
+    if(user){
+        const userData = JSON.parse(user);
+
+        alert("Welcome, " + userData.name + "!");
+    }else{
+        window.location.href = "/user-login.html";
+    }
 }
 </script>
 </body>

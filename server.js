@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const pool = require("./db");
 const interviewRoutes = require("./routes/interview");
 
 console.log(process.env.OPENROUTER_API_KEY);
@@ -18,6 +19,8 @@ app.use(express.json());
 
 app.use(express.static("public"));
 app.use("/api/interview", interviewRoutes);
+const authRoutes = require("./routes/auth");
+app.use("/api/auth", authRoutes);
 app.post("/ask", async (req, res) => {
 
 const question = req.body.question.toLowerCase();

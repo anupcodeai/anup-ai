@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anup AI Login Button</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+}
+
+/* गोल Login Button */
+.login-circle{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+    border:3px solid white;
+}
+
+.login-circle:hover{
+    transform:scale(1.05);
+}
+
+/* Login options */
+.login-box{
+    display:none;
+    position:absolute;
+    top:58px;
+    left:0;
+    width:190px;
+    background:white;
+    border-radius:12px;
+    padding:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    z-index:9999;
+}
+
+.login-box a{
+    display:block;
+    padding:11px;
+    margin:5px 0;
+    text-decoration:none;
+    color:#222;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.login-box a:hover{
+    background:#eef4ff;
+}
+
+.login-wrapper{
+    position:relative;
+    display:inline-block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <div class="login-circle" onclick="toggleLogin()">
+        👤
+    </div>
+
+    <div class="login-box" id="loginBox">
+
+        <a href="/login.html">
+            🔐 Login
+        </a>
+
+        <a href="/signup.html">
+            📝 Sign Up
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+function toggleLogin(){
+
+    const box = document.getElementById("loginBox");
+
+    if(box.style.display === "block"){
+        box.style.display = "none";
+    }else{
+        box.style.display = "block";
+    }
+
+}
+</script>
+
+</body>
+</html>
